@@ -34,7 +34,11 @@ const FeedbackCard = ({
               {designation} of {company}
             </p>
           </div>
-          <img src={image} alt={`feedback-by-${name}`} className='w-10 h-10 rounded-full object-cover' />
+          <img
+            src={image}
+            alt={`feedback-by-${name}`}
+            className='w-10 h-10 rounded-full object-cover'
+          />
         </div>
       </div>
     </div>
@@ -42,31 +46,34 @@ const FeedbackCard = ({
 );
 const Feedbacks = () => {
   return (
-    <div className='mt-12 rounded-[20px] relative w-full bg-black-100 min-h-[850px] '>
-      <div className='w-full h-50 bg-primary'></div>
-      <div
-        className={` rounded-2xl ${styles.padding} relative`}
-      >
-        <div className='min-h-[300px] bg-tertiary w-full rounded-2xl flex items-center '>
-          <div className='w-20 h-50'></div>
-          <motion.div variants={textVariant()}>
-          <p className={styles.sectionSubText}>What others say</p>
-          <h2 className={styles.sectionHeadText}>Testimonials.</h2>
-        </motion.div>
+    <>
+    <div className='w-full flex justify-center'>
+      <div className='mt-12 rounded-[20px] relative max-w-8xl w-420 bg-black-100 min-h-[850px] '>
+        <div className='w-full h-50 bg-primary'></div>
+        <div className={` rounded-2xl ${styles.padding} relative`}>
+          <div className='min-h-[300px] bg-tertiary w-full rounded-2xl flex items-center '>
+            <div className='w-20 h-50'></div>
+            <motion.div variants={textVariant()}>
+              <p className={styles.sectionSubText}>What others say</p>
+              <h2 className={styles.sectionHeadText}>Testimonials.</h2>
+            </motion.div>
+          </div>
+
+          <div
+            className={`${styles.paddingX} absolute top-55 lg:left-0  mx-auto w-full gap-4  pb-14 -mt-20  flex flex-wrap md:gap-15 justify-center items-center`}
+          >
+            {testimonials.map((testimonial, index) => (
+              <FeedbackCard
+                key={testimonial.name}
+                index={index}
+                {...testimonial}
+              />
+            ))}
+          </div>
         </div>
-        
-        <div
-        className={
-          `${styles.paddingX} absolute top-55 lg:left-0  mx-auto w-full gap-4  pb-14 -mt-20  flex flex-wrap md:gap-7 justify-center items-center`
-        }
-      >
-        {testimonials.map((testimonial, index) => (
-          <FeedbackCard key={testimonial.name} index={index} {...testimonial} />
-        ))}
       </div>
       </div>
-      
-    </div>
+    </>
   );
 };
 
